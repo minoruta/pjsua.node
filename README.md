@@ -15,7 +15,8 @@ The pjsua.node is a TypeScript library which provides Pjsua2 on nodejs.
 ## [Documents](https://minoruta.github.io/pjsua.node)
 
 ## Requirements
-- Pjsip native library (>= 2.4.5) which must be installed beforehand.
+- Pjsip native library (>= 2.4.5) which must be installed beforehand,
+- Build essentials, pkg-config, python and node-gyp to build mscdec/sipster.
 
 ## Install
 - `npm install --save minoruta/pjsua.node`

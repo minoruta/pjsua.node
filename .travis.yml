@@ -19,7 +19,7 @@ before_install:
     - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /var/lib/asterisk/sounds/en/
     - sudo cp test/volume/etc/asterisk/* /etc/asterisk/
     - sudo service asterisk restart
-    - wget -qnv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
+    - wget -nv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
     - cd pjproject-$VERSION_PJSIP
     - >
       ./configure

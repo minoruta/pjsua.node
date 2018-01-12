@@ -95,7 +95,7 @@ describe('pjsua.node', () => {
         ua = new Pjsua(config);
     });
 
-    test ('make an account with bad id', async () => {
+    test.skip ('make an account with bad id', async () => {
         let noerror = true;
         const config: AccountConfig = {
             idUri: BadURI,

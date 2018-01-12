@@ -1,0 +1,11 @@
+version: '3'
+services:
+  pjsua:
+    build: .
+    volumes:
+      - ../../:/root/pjsua.node/
+      - ../volume/etc/asterisk/sip.conf:/etc/asterisk/sip.conf
+      - ../volume/etc/asterisk/modules.conf:/etc/asterisk/modules.conf
+      - ../volume/etc/asterisk/manager.conf:/etc/asterisk/manager.conf
+      - ../volume/etc/asterisk/extensions.conf:/etc/asterisk/extensions.conf
+      - ../volume/var/lib/asterisk/sounds/en:/var/lib/asterisk/sounds/en

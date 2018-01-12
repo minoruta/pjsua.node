@@ -1,0 +1,37 @@
+sudo: required
+language: node_js
+node_js:
+  - "8"
+env:
+  - VERSION_PJSIP=2.7.1
+addons:
+  apt:
+    packages:
+    - asterisk
+    - wget
+    - pkg-config
+    - build-essential
+    - python
+before_install:
+    - sudo mkdir -p /var/lib/asterisk/sounds/en/
+    - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /var/lib/asterisk/sounds/en/
+    - sudo cp test/volume/etc/asterisk/* /etc/asterisk/
+    - sudo service asterisk restart
+    - wget -qnv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
+    - cd pjproject-$VERSION_PJSIP
+    - >
+      ./configure
+      --prefix=/usr/local
+      --enable-shared
+      --disable-sound
+      --disable-oss
+      --disable-sdl
+      --disable-speex-aec
+      --disable-video
+      > /dev/null
+    - make dep all  > /dev/null
+    - sudo make install > /dev/null
+    - sudo ldconfig
+install:
+  - npm install
+script: npm test

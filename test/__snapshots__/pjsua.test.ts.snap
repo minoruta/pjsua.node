@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pjsua.node make an account with bad id 1`] = `[Error: unregistered]`;
+
+exports[`pjsua.node remove account, again 1`] = `[Error: not registered, "unregistererd"]`;
+
+exports[`pjsua.node wait for call, accept it, then disconnected from far 1`] = `
+Object {
+  "callId": undefined,
+  "localContact": "<sip:6001@127.0.0.1:5062;ob>",
+  "localUri": "<sip:6001@127.0.0.1;ob>",
+  "remoteContact": "<sip:anonymous@127.0.0.1:5060>",
+  "remoteUri": "\\"Anonymous\\" <sip:anonymous@anonymous.invalid>",
+  "srcAddress": "127.0.0.1:5060",
+}
+`;
+
+exports[`pjsua.node wait for call, then accept it 1`] = `
+Object {
+  "callId": undefined,
+  "localContact": "<sip:6001@127.0.0.1:5062;ob>",
+  "localUri": "<sip:6001@127.0.0.1;ob>",
+  "remoteContact": "<sip:anonymous@127.0.0.1:5060>",
+  "remoteUri": "\\"Anonymous\\" <sip:anonymous@anonymous.invalid>",
+  "srcAddress": "127.0.0.1:5060",
+}
+`;
+
+exports[`pjsua.node wait for call, then reject it 1`] = `
+Object {
+  "callId": undefined,
+  "localContact": "<sip:6001@127.0.0.1:5062;ob>",
+  "localUri": "<sip:6001@127.0.0.1;ob>",
+  "remoteContact": "<sip:anonymous@127.0.0.1:5060>",
+  "remoteUri": "\\"Anonymous\\" <sip:anonymous@anonymous.invalid>",
+  "srcAddress": "127.0.0.1:5060",
+}
+`;

@@ -4,6 +4,8 @@ node_js:
   - "8"
 env:
   - VERSION_PJSIP=2.7.1
+  - PJSUA_LOGLEVEL=6
+  - DEBUG=PJSUA:*
 addons:
   apt:
     packages:

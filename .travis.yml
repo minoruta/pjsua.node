@@ -13,7 +13,7 @@ addons:
     - build-essential
     - python
 before_install:
-    - sudo mkdir -p /var/lib/asterisk/sounds/en/
+    - sudo mkdir -p /usr/share/asterisk/sounds/en/
     - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /usr/share/asterisk/sounds/en/
     - sudo cp test/volume/etc/asterisk/* /etc/asterisk/
     - sudo service asterisk restart

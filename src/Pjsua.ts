@@ -264,6 +264,8 @@ export class AccountExt extends EventEmitter {
     makeCall(destination: string): Promise<CallExt> {
         debug('AccountExt.makeCall');
         return new Promise((resolve, reject) => {
+            if (this.state !== 'registered')
+                return reject(new Error('not registered'));
             if (this.isCallInProgress)
                 return reject(new Error('call in progress'));
 

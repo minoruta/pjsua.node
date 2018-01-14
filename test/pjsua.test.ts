@@ -95,7 +95,7 @@ describe('pjsua.node', () => {
         ua = new Pjsua(config);
     });
 
-    test.skip ('make an account with bad id', async () => {
+    test ('make an account with bad id', async () => {
         let noerror = true;
         const config: AccountConfig = {
             idUri: BadURI,
@@ -211,6 +211,18 @@ describe('pjsua.node', () => {
     test ('remove account', async () => {
         debug('ua.removeAccount');
         await ua.removeAccount();
+    });
+    test (`make an outbound call to unregistered account`, async () => {
+        debug('make an outbound call to unregistered account');
+        let noerror = true;
+        try {
+            await ua.account.makeCall(CalleeLongURI);
+        }
+        catch (err) {
+            expect(err).toMatchSnapshot();
+            noerror = false;
+        }
+        expect(noerror).toBe(false);
     });
     test ('remove account, again', async () => {
         debug('ua.removeAccount');

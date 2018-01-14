@@ -331,8 +331,8 @@ class Pjsua {
         debug('Pjsua.makeAccount');
         return new Promise((resolve, reject) => {
             let account;
-            const DEFAULT = sipster_ts_1.DEFAULT_ACCOUNT_CONFIG;
-            accountConfig = Object.assign(DEFAULT, accountConfig);
+            accountConfig.sipConfig.transport = this._transport;
+            accountConfig = sipster_ts_1.makeAccountConfig(accountConfig);
             if (this.account) {
                 account = this.account.account;
                 account.modify(accountConfig);

@@ -11,7 +11,7 @@ AudioMedia,
 AudioMediaPlayer,
 AudioMediaRecorder,
 Media,
-DEFAULT_ACCOUNT_CONFIG,
+makeAccountConfig,
 } from 'sipster.ts';
 
 export {
@@ -423,8 +423,8 @@ export class Pjsua {
         debug('Pjsua.makeAccount');
         return new Promise<void>((resolve, reject) => {
             let account: Account;
-            const DEFAULT = DEFAULT_ACCOUNT_CONFIG;
-            accountConfig = Object.assign(DEFAULT, accountConfig);
+            accountConfig.sipConfig.transport = this._transport;
+            accountConfig = makeAccountConfig(accountConfig);
             if (this.account) {
                 account = this.account.account;
                 account.modify(accountConfig);

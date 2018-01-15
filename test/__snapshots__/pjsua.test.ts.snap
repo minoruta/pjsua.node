@@ -2,6 +2,8 @@
 
 exports[`pjsua.node make an account with bad id 1`] = `[Error: unregistered]`;
 
+exports[`pjsua.node make an outbound call to unregistered account 1`] = `[Error: not registered]`;
+
 exports[`pjsua.node remove account, again 1`] = `[Error: not registered, "unregistererd"]`;
 
 exports[`pjsua.node wait for call, accept it, then disconnected from far 1`] = `

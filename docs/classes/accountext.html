@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AccountExt | pjsua.node - A simple pjsua2 for nodejs</title>
+	<title>AccountExt | pjsua.node - A pjsua for nodejs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">pjsua.node - A simple pjsua2 for nodejs</a>
+					<a href="../index.html" class="title">pjsua.node - A pjsua for nodejs</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -369,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L295">Pjsua.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L304">Pjsua.ts:304</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,6 +377,14 @@
 									<p>For incoming calls, this responds to the INVITE with an optional
 									statusCode (defaults to 200) and optional reason phrase.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>reject</dt>
+									<dd><p>{Error}  calling in progress</p>
+									</dd>
+									<dt>reject</dt>
+									<dd><p>{Error}  disconnected</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -391,6 +399,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>when the inbound call has been confirmed.</p>
 						</li>
 					</ul>
 				</section>
@@ -467,7 +476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L329">Pjsua.ts:329</a></li>
+									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L340">Pjsua.ts:340</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -478,6 +487,11 @@
 										will hangup the call regardless of the state and role of the call,
 									while answer() only works with incoming calls on EARLY state.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>reject</dt>
+									<dd><p>{Error}  not calling</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -489,6 +503,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>when the outstanding call has been disconnected.</p>
 						</li>
 					</ul>
 				</section>
@@ -550,13 +565,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L264">Pjsua.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L268">Pjsua.ts:268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Start a new SIP call to destination.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>reject</dt>
+									<dd><p>{Error}  not registered</p>
+									</dd>
+									<dt>reject</dt>
+									<dd><p>{Error}  call in progress</p>
+									</dd>
+									<dt>reject</dt>
+									<dd><p>{Error}  disconnected</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -565,6 +591,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="callext.html" class="tsd-signature-type">CallExt</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>when the outbound call has been connected.</p>
 						</li>
 					</ul>
 				</section>
@@ -1042,7 +1069,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L358">Pjsua.ts:358</a></li>
+									<li>Defined in <a href="https://github.com/minoruta/pjsua.node/blob/master/src/Pjsua.ts#L369">Pjsua.ts:369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

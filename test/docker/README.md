@@ -14,4 +14,5 @@
 - open a terminal as #2
     - `docker exec -it docker_pjsua_1 ash`
     - `cd pjsua.node`
-    - `LD_LIBRARY_PATH=/usr/local npm test`
+    - `npm install`
+    - `npm test`

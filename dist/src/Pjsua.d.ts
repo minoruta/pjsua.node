@@ -96,11 +96,18 @@ export declare class AccountExt extends EventEmitter {
     protected onDtmf(digit: string): void;
     /**
      * Start a new SIP call to destination.
+     * @return when the outbound call has been connected.
+     * @reject {Error}  not registered
+     * @reject {Error}  call in progress
+     * @reject {Error}  disconnected
      */
     makeCall(destination: string): Promise<CallExt>;
     /**
      * For incoming calls, this responds to the INVITE with an optional
      * statusCode (defaults to 200) and optional reason phrase.
+     * @return when the inbound call has been confirmed.
+     * @reject {Error}  calling in progress
+     * @reject {Error}  disconnected
      */
     answer(call: CallExt, statusCode?: number, reason?: string): Promise<void>;
     /**
@@ -109,6 +116,8 @@ export declare class AccountExt extends EventEmitter {
      * the call with 3xx-6xx response (with answer()), in that this function
      * will hangup the call regardless of the state and role of the call,
      * while answer() only works with incoming calls on EARLY state.
+     * @return when the outstanding call has been disconnected.
+     * @reject {Error}  not calling
      */
     hangup(statusCode?: number, reason?: string): Promise<void>;
     /**
@@ -141,11 +150,17 @@ export declare class Pjsua {
     /**
      * Make an account and start registration
      * @param accountConfig     is for making an acount
-     * @return registered account.
+     * @return when the outstanding account has been registered.
+     * @reject {Error}  timeout
+     * @reject {Error}  unregistered
      */
     makeAccount(accountConfig: AccountConfig): Promise<void>;
     /**
      * Delete an account and the registration
+     * @return when the current account has been unregistered.
+     * @reject {Error}  no account
+     * @reject {Error}  call in progress
+     * @reject {Error}  not registered
      */
     removeAccount(): Promise<void>;
 }

@@ -1,7 +1,8 @@
 sudo: required
 language: node_js
 node_js:
-  - "8"
+  - "node"
+  - "lts/*"
 env:
   - VERSION_PJSIP=2.7.1
 addons:
@@ -13,12 +14,11 @@ addons:
     - build-essential
     - python
 before_install:
-    - sudo mkdir -p /var/lib/asterisk/sounds/en/
-    - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /var/lib/asterisk/sounds/en/
+    - sudo mkdir -p /usr/share/asterisk/sounds/en/
+    - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /usr/share/asterisk/sounds/en/
     - sudo cp test/volume/etc/asterisk/* /etc/asterisk/
     - sudo service asterisk restart
-    - sleep 5
-    - wget -qnv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
+    - wget -nv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
     - cd pjproject-$VERSION_PJSIP
     - >
       ./configure

@@ -11,7 +11,7 @@ AudioMedia,
 AudioMediaPlayer,
 AudioMediaRecorder,
 Media,
-DEFAULT_ACCOUNT_CONFIG,
+makeAccountConfig,
 } from 'sipster.ts';
 
 export {
@@ -260,10 +260,16 @@ export class AccountExt extends EventEmitter {
 
     /**
      * Start a new SIP call to destination.
+     * @return when the outbound call has been connected.
+     * @reject {Error}  not registered
+     * @reject {Error}  call in progress
+     * @reject {Error}  disconnected
      */
     makeCall(destination: string): Promise<CallExt> {
         debug('AccountExt.makeCall');
         return new Promise((resolve, reject) => {
+            if (this.state !== 'registered')
+                return reject(new Error('not registered'));
             if (this.isCallInProgress)
                 return reject(new Error('call in progress'));
 
@@ -291,6 +297,9 @@ export class AccountExt extends EventEmitter {
     /**
      * For incoming calls, this responds to the INVITE with an optional
      * statusCode (defaults to 200) and optional reason phrase.
+     * @return when the inbound call has been confirmed.
+     * @reject {Error}  calling in progress
+     * @reject {Error}  disconnected
      */
     answer(call: CallExt, statusCode?: number, reason?: string): Promise<void> {
         debug('AccountExt.answer');
@@ -325,6 +334,8 @@ export class AccountExt extends EventEmitter {
      * the call with 3xx-6xx response (with answer()), in that this function
      * will hangup the call regardless of the state and role of the call,
      * while answer() only works with incoming calls on EARLY state.
+     * @return when the outstanding call has been disconnected.
+     * @reject {Error}  not calling
      */
     hangup(statusCode?: number, reason?: string): Promise<void> {
         debug('AccountExt.hangup');
@@ -417,14 +428,16 @@ export class Pjsua {
     /**
      * Make an account and start registration
      * @param accountConfig     is for making an acount
-     * @return registered account.
+     * @return when the outstanding account has been registered.
+     * @reject {Error}  timeout
+     * @reject {Error}  unregistered
      */
     makeAccount(accountConfig: AccountConfig): Promise<void> {
         debug('Pjsua.makeAccount');
         return new Promise<void>((resolve, reject) => {
             let account: Account;
-            const DEFAULT = DEFAULT_ACCOUNT_CONFIG;
-            accountConfig = Object.assign(DEFAULT, accountConfig);
+            accountConfig.sipConfig.transport = this._transport;
+            accountConfig = makeAccountConfig(accountConfig);
             if (this.account) {
                 account = this.account.account;
                 account.modify(accountConfig);
@@ -460,6 +473,10 @@ export class Pjsua {
 
     /**
      * Delete an account and the registration
+     * @return when the current account has been unregistered.
+     * @reject {Error}  no account
+     * @reject {Error}  call in progress
+     * @reject {Error}  not registered
      */
     removeAccount(): Promise<void> {
         debug('Pjsua.removeAccount');

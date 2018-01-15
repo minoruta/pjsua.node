@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "8"
 env:
-  - VERSION_PJSIP=2.7.1 PJSUA_LOGLEVEL=6 DEBUG=PJSUA:*
+  - VERSION_PJSIP=2.7.1
 addons:
   apt:
     packages:

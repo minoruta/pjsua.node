@@ -26,7 +26,8 @@ The pjsua.node is a TypeScript library which provides Pjsua2 on nodejs.
 - `npm test`
 
 ## Debug
-- `DEBUG=PJSUA:* npm test`
+- `DEBUG=PJSUA:* npm test` to enable debug log
+- `PJSUA_LOGLEVEL=6 npm test` to set log level of pjsip
 
 ## Build
 - `npm run build`

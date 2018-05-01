@@ -4,7 +4,7 @@ node_js:
   - "node"
   - "lts/*"
 env:
-  - VERSION_PJSIP=2.7.1
+  - VERSION_PJSIP=2.7.1 VERSION_LIBSRTP=2.1.0
 addons:
   apt:
     packages:
@@ -18,11 +18,20 @@ before_install:
     - sudo cp test/volume/var/lib/asterisk/sounds/en/*.ulaw /usr/share/asterisk/sounds/en/
     - sudo cp test/volume/etc/asterisk/* /etc/asterisk/
     - sudo service asterisk restart
+    - wget https://github.com/cisco/libsrtp/archive/v$VERSION_LIBSRTP.tar.gz
+    - tar xzf v$VERSION_LIBSRTP.tar.gz
+    - cd libsrtp-$VERSION_LIBSRTP
+    - ./configure
+    - make
+    - sudo make install
+    - sudo ldconfig
+    - cd ..
     - wget -nv "http://www.pjsip.org/release/$VERSION_PJSIP/pjproject-$VERSION_PJSIP.tar.bz2" -O - | tar xjf -
     - cd pjproject-$VERSION_PJSIP
     - >
       ./configure
       --prefix=/usr/local
+      --with-external-srtp
       --enable-shared
       --disable-sound
       --disable-oss

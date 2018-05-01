@@ -1,6 +1,6 @@
 {
   "name": "pjsua",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A pjsua for nodejs",
   "author": "KINOSHITA minoru <5021543+minoruta@users.noreply.github.com>",
   "license": "MIT",

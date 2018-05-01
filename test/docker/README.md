@@ -10,9 +10,8 @@
 
 ### Test
 - open a terminal as #1
-    - `docker-compose up [--build]`
+    - `docker-compose build`
+    - `docker-compose up`
 - open a terminal as #2
-    - `docker exec -it docker_pjsua_1 ash`
-    - `cd pjsua.node`
-    - `npm install`
-    - `npm test`
+    - `docker exec -it docker_pjsua_1 ash -c 'cd /root/pjsua.node && npm test'`
+    - `docker-compose down` to clean up

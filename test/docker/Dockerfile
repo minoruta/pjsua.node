@@ -8,6 +8,8 @@ RUN apk add --no-cache --virtual .build4pjsua \
     python \
     pkgconf \
     alpine-sdk \
-    && npm install -g node-gyp
+&&  npm install -g node-gyp
 
-CMD asterisk -c
+CMD cd /root/pjsua.node \
+&&  npm install \
+&&  asterisk -c > /dev/null
